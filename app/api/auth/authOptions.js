@@ -9,6 +9,10 @@ export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
+      profile(profile) {
+        return { role: profile.role ?? 'USER'}
+      },
+
       name: "Credentials",
       credentials: {
         email: {
@@ -45,6 +49,16 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }) {
+      if(user) token.role = user.role
+      return token
+    },
+    session({ session, token }) {
+      session.user.role = token.role
+      return session
+    }
+  },
   session: {
     strategy: "jwt",
   },

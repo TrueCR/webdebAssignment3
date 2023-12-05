@@ -5,7 +5,13 @@ const MovieForm = ({ onSave, onCancel, initialData }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+
+    if (name === 'actors') {
+      const actorsArray = value.split(',').map((actor) => actor.trim());
+      setFormData((prevData) => ({ ...prevData, [name]: actorsArray }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSave = () => {
@@ -14,14 +20,14 @@ const MovieForm = ({ onSave, onCancel, initialData }) => {
 
   return (
     <div className='mx-5 my-2 p-2 bg-slate-200 rounded shadow'>
-      <label className=' text-lg font-semibold mr-7'>Title:</label>
+      <label className='text-lg font-semibold mr-7'>Title:</label>
       <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
       <br />
-      <label className=' text-lg font-semibold mr-7'>Year:</label>
+      <label className='text-lg font-semibold mr-7'>Year:</label>
       <input type="text" name="year" value={formData.year} onChange={handleInputChange} />
       <br />
-      <label className=' text-lg font-semibold mr-2'>Actors:</label>
-      <input type="text" name="actors" value={formData.actors} onChange={handleInputChange} />
+      <label className='text-lg font-semibold mr-2'>Actors:</label>
+      <input type="text" name="actors" value={formData.actors.join(', ')} onChange={handleInputChange} />
       <br />
       <button onClick={handleSave} className='bg-green-500 p-1 rounded-lg text-white mr-2 mt-3'>Save</button>
       <button onClick={onCancel} className='bg-red-500 p-1 rounded-lg text-white'>Cancel</button>

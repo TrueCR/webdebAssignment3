@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import MovieForm from './MovieForm';
 
-const MovieList = () => {
+const EditMovieList = () => {
   const [movies, setMovies] = useState(require('@/app/data/movies.json'));
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -66,4 +66,4 @@ const MovieList = () => {
   );
 };
 
-export default MovieList;
+export default EditMovieList;
