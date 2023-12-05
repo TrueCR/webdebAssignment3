@@ -27,12 +27,12 @@ const isAdmin = async () => {
       <ul className="flex space-x-4">
         <li>
           {status === 'authenticated' && <div>
-            <Link href="/movies" className="ml-3">Movies</Link>
+            <Link href="/protected/movies" className="ml-3">Movies</Link>
             </div>}
         </li>
         <li>
           {status === 'authenticated' && isAdmin() && <div>
-            <Link href="/movies/edit" className="ml-3">Edit Movies</Link>
+            <Link href="/protected/movies/edit" className="ml-3">Edit Movies</Link>
             </div>}
         </li>
       </ul>
