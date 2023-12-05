@@ -44,23 +44,22 @@ const MovieList = () => {
   };
 
   return (
-    <div>
-      <h1>Movie List</h1>
+    <div className='bg-slate-50 w-auto mx-20 my-10 rounded-lg shadow-md p-1'>
       {isAdding || isEditing ? (
         <MovieForm onSave={handleSave} onCancel={handleCancel} initialData={editData} />
       ) : (
         <div>
-          <button onClick={handleAdd}>Add Movie</button>
           <ul>
             {movies.map((movie) => (
-              <li key={movie.id}>
-                <strong>{movie.title}</strong> ({movie.year})<br />
-                <strong>Actors:</strong> {movie.actors.join(', ')}<br />
-                <button onClick={() => handleEdit(movie)}>Edit</button>{' '}
-                <button onClick={() => handleDelete(movie.id)}>Delete</button>
+              <li key={movie.id} className='bg-slate-200 mx-5 my-2 p-2 shadow rounded '>
+                <strong className='text-xl'>{movie.title}</strong> ({movie.year})<br />
+                <strong>Actors:</strong> {Array.isArray(movie.actors) ? movie.actors.join(', ') : 'N/A'}<br />
+                <button onClick={() => handleEdit(movie)} className='bg-yellow-500 p-1 rounded-lg text-white'>Edit</button>{' '}
+                <button onClick={() => handleDelete(movie.id)} className='bg-red-500 p-1 rounded-lg text-white'>Delete</button>
               </li>
             ))}
           </ul>
+          <button onClick={handleAdd} className=' bg-green-500 p-1 rounded-lg text-white my-2 mx-5'>Add Movie</button>
         </div>
       )}
     </div>
