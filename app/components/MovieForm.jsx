@@ -28,7 +28,11 @@ import React, { useState } from 'react';
 // Functional component for a Movie Form
 const MovieForm = ({ onSave, onCancel, initialData }) => {
   // State variable to manage form data
-  const [formData, setFormData] = useState(initialData || { title: '', year: '', actors: '' });
+  const [formData, setFormData] = useState({
+    title: '',
+    year: '',
+    actors: initialData && Array.isArray(initialData.actors) ? initialData.actors : [],
+  });
 
   // Function to handle input changes in the form
   const handleInputChange = (e) => {
@@ -61,7 +65,12 @@ const MovieForm = ({ onSave, onCancel, initialData }) => {
       <br />
       {/* Input field for movie actors (comma-separated string) */}
       <label className='text-lg font-semibold mr-2'>Actors:</label>
-      <input type="text" name="actors" value={formData.actors.join(', ')} onChange={handleInputChange} />
+      <input
+        type="text"
+        name="actors"
+        defaultValue={Array.isArray(formData.actors) ? formData.actors.join(', ') : ''}
+        onChange={handleInputChange}
+      />
       <br />
       {/* Save and Cancel buttons */}
       <button onClick={handleSave} className='bg-green-500 p-1 rounded-lg text-white mr-2 mt-3'>Save</button>
