@@ -25,7 +25,7 @@
   - The component renders a user interface allowing users to view, add, edit, and delete movies.
   - The movie list is displayed with individual movie details, including title, year, actors, and buttons for editing or deleting movies.
 
-  Authors: Julien Lam, Elvis Chizoba, Tyler Gettle
+  Authors: Julien Lam, Elvis Chizoba and Tyler Gettle
   Version: 2023-12-04
 */
 
@@ -34,7 +34,7 @@
 import React, { useState } from 'react';
 import MovieForm from './MovieForm';
 
-// Main functional component for editing movie list
+// Main Functional component for editing movie list
 const EditMovieList = () => {
   // State variables for managing movies, adding, editing, and edit data
   const [movies, setMovies] = useState(require('@/app/data/movies.json'));
